@@ -3,8 +3,8 @@ import "../../components/NavBar/navbar.css";
 
 function NavBar() {
   return (
-    <div className="">
-      <nav className="navbar navbar-expand-lg navbar-light  fixed-top py-4 px-5">
+    <div className="mb-5">
+      <nav className="navbar navbar-expand-lg navbar-light  bg-light fixed-top py-4 px-5 ">
         <a className="navbar-brand " href="#">
           Navbar
         </a>
