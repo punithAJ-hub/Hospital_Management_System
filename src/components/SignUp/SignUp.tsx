@@ -3,6 +3,8 @@ import "../../components/SignUp/signup.css";
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 
+import API from "../../utils/API";
+
 import axios, { AxiosError } from "axios";
 
 function SignUp() {
@@ -28,13 +30,12 @@ function SignUp() {
       console.log("Before sending data formdata is : ", formData);
 
       // Send form data to backend
-      const response = await axios
-        .post("http://localhost:3000/users/signUp", formData)
-        .then((data) => {
+      const response = await API.post("/users/signUp", formData).then(
+        (data) => {
           console.log(data);
-
           return data;
-        });
+        }
+      );
 
       console.log("Status", response.status);
 
