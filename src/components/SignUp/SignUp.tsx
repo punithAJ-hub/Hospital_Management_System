@@ -5,8 +5,6 @@ import Typography from "@mui/material/Typography";
 
 import API from "../../utils/API";
 
-import axios, { AxiosError } from "axios";
-
 function SignUp() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");

@@ -6,10 +6,12 @@ import axios, { AxiosResponse } from "axios";
 import AppRoute from "../../routes/AppRoute";
 
 import API from "../../utils/API";
+import { useAuth } from "../../utils/AuthProvider";
 
 function SignIn() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const { setToken } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -34,6 +36,7 @@ function SignIn() {
       );
 
       if (response.status === 200) {
+        setToken("This is A Token");
         navigate("/HomePage");
       }
     } catch (error: any) {
