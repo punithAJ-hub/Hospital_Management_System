@@ -1,9 +1,6 @@
 
 const util = require('../util');
 const User = require('./users.model');
-// const mongoose = require('mongoose');
-
-
 
 const createUser = async (req, res) => {
     const  body  = req.body;
@@ -14,12 +11,12 @@ const createUser = async (req, res) => {
         console.log("Recieved in createUser");
         console.log(userDoc);
         const user = await userDoc.save();
-        res.json(user);
+        return res.status(200).json({ message: 'SignUp successful' });
     } catch (error) {
         if (error.code === 11000) { // MongoDB duplicate key error code
-            res.status(400).json({ error: 'Username already exists' });}
+            return res.status(400).json({ error: 'Username already exists' });}
         else {
-            res.status(500).json({ error: error.toString() });
+            return res.status(500).json({ error: error.toString() });
         }
     }
 };
@@ -56,10 +53,14 @@ const updateUser = async (req, res) => {
 const getUserWithDetails = async (req, res) => {
     try {
         // Extract email and password from the request body
-        const { email, password } = req.body;
+        const email = req.body.email;
+        const password = req.body.password;
+        console.log(email);
+       
 
         // Find a user with the provided email
         const user = await User.findOne({ email });
+        console.log("User obj : " ,user);
 
         // If no user is found with the provided email
         if (!user) {

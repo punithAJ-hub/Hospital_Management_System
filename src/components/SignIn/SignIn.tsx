@@ -1,33 +1,48 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ErrorResponse, useNavigate } from "react-router-dom";
+import axios, { AxiosResponse } from "axios";
+import AppRoute from "../../routes/AppRoute";
+
+import API from "../../utils/API";
 
 function SignIn() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(() => {
+    setErrorMessage("");
+  }, [formData.email, formData.password]);
+
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+    console.log("before sending In sighiN ", formData);
 
-    const user = await fetch("http://localhost:3000/users/signIn", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const response = await API.post("/users/signIn", formData).then(
+        (res: AxiosResponse) => {
+          console.log("Logging data", res);
 
-    if (user.status === 200) {
-      navigate("/HomePage");
-    } else if (user.status === 404) {
-      setErrorMessage("Unable to find user. Please check your EmailID");
-    } else {
-      setErrorMessage("Email ID/Password incorrect.");
+          return res;
+        }
+      );
+
+      if (response.status === 200) {
+        navigate("/HomePage");
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        setErrorMessage("Unable to find user. Please check your EmailID");
+      } else {
+        console.error("An error occurred:", error);
+        setErrorMessage("Email ID/Password is incorrect.");
+      }
     }
   };
 

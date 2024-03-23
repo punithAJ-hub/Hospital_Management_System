@@ -1,7 +1,9 @@
 import React from "react";
 import "../../components/SignUp/signup.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
+
+import axios, { AxiosError } from "axios";
 
 function SignUp() {
   const [successMessage, setSuccessMessage] = useState("");
@@ -13,6 +15,11 @@ function SignUp() {
     password: "",
   });
 
+  useEffect(() => {
+    setErrorMessage("");
+    setSuccessMessage("");
+  }, [formData]);
+
   // Event handler for form submission
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -21,22 +28,25 @@ function SignUp() {
       console.log("Before sending data formdata is : ", formData);
 
       // Send form data to backend
-      const response = await fetch("http://localhost:3000/users/signUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios
+        .post("http://localhost:3000/users/signUp", formData)
+        .then((data) => {
+          console.log(data);
 
-      if (!response.ok) {
-        setErrorMessage("Something went wrong. Please try again.");
-        throw new Error("Failed to submit form");
-      } else {
-        setSuccessMessage("Successfully Register.");
+          return data;
+        });
+
+      console.log("Status", response.status);
+
+      if (response.status === 200) {
+        setSuccessMessage("Successfully Registered.");
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        setErrorMessage("User Already exists. Please SignIn.");
+      } else if (error.response.status == 500) {
+        setErrorMessage(" Something went wrong. Please try again.");
+      }
     }
   };
 
