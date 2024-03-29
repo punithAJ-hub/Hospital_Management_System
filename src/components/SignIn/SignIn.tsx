@@ -11,7 +11,7 @@ import { useAuth } from "../../utils/AuthProvider";
 function SignIn() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const { setToken } = useAuth();
+  const { setToken, setUser, setName } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -37,6 +37,7 @@ function SignIn() {
 
       if (response.status === 200) {
         setToken("This is A Token");
+        setUser(formData.email);
         navigate("/HomePage");
       }
     } catch (error: any) {

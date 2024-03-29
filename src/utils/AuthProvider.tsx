@@ -26,21 +26,39 @@ const AuthProvider = ({ children }) => {
     setToken_(newToken);
   };
 
+  const [user, setUser_] = useState(localStorage.getItem("user"));
+
+  // Function to set the authentication token
+  const setUser = (newUser) => {
+    setUser_(newUser);
+  };
+
+  const [name, setName_] = useState(localStorage.getItem("name"));
+
+  // Function to set the authentication token
+  const setName = (name) => {
+    setName_(name);
+  };
+
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       localStorage.setItem("token", token);
+      localStorage.setItem("user", user);
     } else {
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
-  }, [token]);
+  }, [token, user]);
 
   // Memoized value of the authentication context
   const contextValue = useMemo(
     () => ({
       token,
       setToken,
+      user,
+      setUser,
     }),
     [token]
   );

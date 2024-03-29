@@ -4,6 +4,9 @@ import { useAuth } from "../utils/AuthProvider";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import WelcomePage from "../pages/WelcomePage/WelcomePage";
 import HomePage from "../pages/HomePage/HomePage";
+import Dashboard from "../components/Dashboard/Dashboard";
+import Patients from "../components/Patients/Patients";
+import PatientForm from "../components/PatientForm/PatientForm";
 
 const AppRoute = () => {
   const { token } = useAuth();
@@ -28,15 +31,19 @@ const AppRoute = () => {
       children: [
         {
           path: "HomePage",
-          element: <HomePage />,
+          element: <HomePage children={undefined} />,
         },
         {
-          path: "profile",
-          element: <div>User Profile</div>,
+          path: "patients",
+          element: <HomePage children={<Patients />} />,
         },
         {
-          path: "logout",
-          element: <div>Logout</div>,
+          path: "dashboard",
+          element: <HomePage children={<Dashboard />} />,
+        },
+        {
+          path: "patientInformation",
+          element: <HomePage children={<PatientForm />} />,
         },
       ],
     },

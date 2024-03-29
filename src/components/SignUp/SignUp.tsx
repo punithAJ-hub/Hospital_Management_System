@@ -39,6 +39,7 @@ function SignUp() {
 
       if (response.status === 200) {
         setSuccessMessage("Successfully Registered.");
+        setFormData({ name: "", email: "", password: "" });
       }
     } catch (error: any) {
       if (error.response.status === 400) {

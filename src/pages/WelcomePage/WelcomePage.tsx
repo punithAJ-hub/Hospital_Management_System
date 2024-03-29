@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
-import NavBar from "../../components/NavBar/NavBar";
 import "../../pages/WelcomePage/welcomePage.css";
+import WelcomeMessage from "../../components/welcomeMessage/WelcomeMessage";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,6 +48,7 @@ function a11yProps(index: number) {
 export default function WelcomePage() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const message = "Managing made easy.";
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -57,12 +58,33 @@ export default function WelcomePage() {
     setValue(index);
   };
 
+  const swiftUpElements = document.querySelectorAll(".swift-up-text");
+
+  swiftUpElements.forEach((elem) => {
+    const words = elem.textContent.split(" ");
+    elem.innerHTML = "";
+
+    words.forEach((el, index) => {
+      words[index] = `<span><i>${words[index]}</i></span>`;
+    });
+
+    elem.innerHTML = words.join(" ");
+
+    const children = document.querySelectorAll("span > i");
+    children.forEach((node, index) => {
+      node.style.animationDelay = `${index * 0.2}s`;
+    });
+  });
+
   return (
     <>
-      <NavBar />
       <div className="container welcomeForms">
         <div className="row">
-          <div className="col"></div>
+          <div className="col">
+            <div>
+              <WelcomeMessage message={message} />
+            </div>
+          </div>
           <div className="col ">
             <div className="forms ">
               <Box
