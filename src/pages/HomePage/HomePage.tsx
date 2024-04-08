@@ -1,17 +1,25 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
 import { Grid, Paper } from "@mui/material";
 import SideMenu from "../../components/SideMenu/SideMenu";
 
 function HomePage({ children }) {
   return (
-    <Grid container>
-      <Grid item xs={2}>
+    <Grid item container>
+      <Grid item style={{ width: 200 }}>
         <SideMenu />
       </Grid>
 
       {/* Children Component */}
-      <Grid item xs={9} style={{ marginTop: "100px", marginLeft: "0px" }}>
+      <Grid
+        item
+        style={{
+          marginTop: "90px",
+          marginLeft: "200px",
+          height: "100vh",
+          width: "100vw",
+        }}
+        className="bg-light"
+      >
         {children}
       </Grid>
     </Grid>

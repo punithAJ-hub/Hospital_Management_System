@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import API from "../../utils/API";
 import BedSelection from "./BedSelection";
 
-const PatientForm = () => {
+const PatientForm = ({ action }) => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -44,9 +44,16 @@ const PatientForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(patientData);
-    const response = await API.post("/patients/addpatientdata", patientData);
+    let response;
+    if (action === "Update") {
+      console.log("This is an update ");
+      response = await API.put("/patients/updateRecord", patientData);
+      console.log(response.data.message);
+    } else {
+      response = await API.post("/patients/addpatientdata", patientData);
+    }
 
-    if (response.status === 200) {
+    if (response?.status === 200) {
       setSuccess("Patient record has been added");
       setPatientData({
         firstName: "",
@@ -261,7 +268,7 @@ const PatientForm = () => {
           </Grid>
           <Box mt={3}>
             <Button variant="contained" color="primary" type="submit">
-              Submit
+              {action ? action : "Submit"}
             </Button>
           </Box>
         </form>

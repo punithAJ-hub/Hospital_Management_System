@@ -7,6 +7,8 @@ import HomePage from "../pages/HomePage/HomePage";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Patients from "../components/Patients/Patients";
 import PatientForm from "../components/PatientForm/PatientForm";
+import Beds from "../components/Beds/Beds";
+import UserCard from "../components/UserCard/UserCard";
 
 const AppRoute = () => {
   const { token } = useAuth();
@@ -42,8 +44,16 @@ const AppRoute = () => {
           element: <HomePage children={<Dashboard />} />,
         },
         {
+          path: "beds",
+          element: <HomePage children={<Beds />} />,
+        },
+        {
           path: "patientInformation",
           element: <HomePage children={<PatientForm />} />,
+        },
+        {
+          path: "manageAccounts",
+          element: <HomePage children={<UserCard />} />,
         },
       ],
     },

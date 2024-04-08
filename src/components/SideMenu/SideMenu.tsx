@@ -10,6 +10,9 @@ import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import BedIcon from "@mui/icons-material/Bed";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import "../../components/SideMenu/SideMenu.css";
 
 export default function SideMenu() {
   const navigateToDashboard = () => {
@@ -27,29 +30,41 @@ export default function SideMenu() {
     window.location.href = "/patientInformation";
   };
 
+  const navigateToBeds = () => {
+    console.log("Navigating to dashboard");
+    window.location.href = "/beds";
+  };
+  const navigateToManageAccounts = () => {
+    console.log("Navigating to dashboard");
+    window.location.href = "/manageAccounts";
+  };
+
   return (
     <div style={{ height: "100vh" }} className="position-fixed">
       <Paper sx={{ width: 200, height: "100%", marginTop: "90px" }}>
         <MenuList>
-          <MenuItem className="my-5" onClick={navigateToDashboard}>
+          <MenuItem className="my-5 sidebarLink" onClick={navigateToDashboard}>
             <ListItemIcon>
               <DashboardIcon fontSize="small" />
             </ListItemIcon>
             <Typography variant="inherit">Dashboard</Typography>
           </MenuItem>
-          <MenuItem className="mb-5" onClick={navigateToPatientForm}>
+          <MenuItem
+            className="mb-5 sidebarLink"
+            onClick={navigateToPatientForm}
+          >
             <ListItemIcon>
               <AssignmentIcon fontSize="small" />
             </ListItemIcon>
             <Typography variant="inherit">Patient Info</Typography>
           </MenuItem>
-          <MenuItem className="mb-5" onClick={navigateToPatients}>
+          <MenuItem className="mb-5 sidebarLink" onClick={navigateToPatients}>
             <ListItemIcon>
               <PeopleIcon fontSize="small" />
             </ListItemIcon>
             <Typography variant="inherit">Patients</Typography>
           </MenuItem>
-          <MenuItem className="mb-5">
+          <MenuItem className="mb-5 sidebarLink">
             <ListItemIcon>
               <EditCalendarIcon fontSize="small" />
             </ListItemIcon>
@@ -57,13 +72,28 @@ export default function SideMenu() {
               Schedule
             </Typography>
           </MenuItem>
-          <MenuItem className="mb-5">
+          <MenuItem className="mb-5 sidebarLink">
             <ListItemIcon>
               <InventoryIcon fontSize="small" />
             </ListItemIcon>
             <Typography variant="inherit">Inventories</Typography>
           </MenuItem>
-          <MenuItem className="mb-5">
+          <MenuItem className="mb-5 sidebarLink" onClick={navigateToBeds}>
+            <ListItemIcon>
+              <BedIcon fontSize="small" />
+            </ListItemIcon>
+            <Typography variant="inherit">Beds</Typography>
+          </MenuItem>
+          <MenuItem
+            className="mb-5 sidebarLink"
+            onClick={navigateToManageAccounts}
+          >
+            <ListItemIcon>
+              <ManageAccountsIcon fontSize="small" />
+            </ListItemIcon>
+            <Typography variant="inherit">Manage Accounts</Typography>
+          </MenuItem>
+          <MenuItem className="mb-5 sidebarLink">
             <ListItemIcon>
               <AnalyticsIcon fontSize="small" />
             </ListItemIcon>

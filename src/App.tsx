@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./components/NavBar/NavBar";
+import "../src/App.css";
 
 import AppRoute from "./routes/AppRoute";
 
@@ -15,12 +16,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <div>
-          <div className="fixed-top">
+          <div className="fixed-top h-auto">
             <NavBar />
           </div>
-          <div>
-            <AppRoute />
-          </div>
+          <AppRoute />
         </div>
       </AuthProvider>
     </ThemeProvider>

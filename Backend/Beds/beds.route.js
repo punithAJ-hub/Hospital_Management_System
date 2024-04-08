@@ -12,6 +12,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.post("/createBed", jsonParser, controller.createBed);
 router.get("/vacant", jsonParser, controller.getVacantBeds);
 router.put("/assign/:bedId", jsonParser, controller.updateBed);
+router.get("/all", jsonParser, controller.getAllBeds);
 
 // router.get('/:id',urlencodedParser, controller.getUserWithDetails);
 

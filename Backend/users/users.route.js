@@ -1,19 +1,17 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const controller = require('./users.controller');
-var bodyParser = require('body-parser')
- 
+const controller = require("./users.controller");
+var bodyParser = require("body-parser");
+
 // create application/json parser
-var jsonParser = bodyParser.json()
- 
+var jsonParser = bodyParser.json();
+
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
- 
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-router.post('/signUp',jsonParser, controller.createUser);
-router.post('/signIn', jsonParser, controller.getUserWithDetails)
-router.put('/:id', controller.updateUser);
-// router.get('/:id',urlencodedParser, controller.getUserWithDetails);
-
+router.post("/signUp", jsonParser, controller.createUser);
+router.post("/signIn", jsonParser, controller.getUserWithDetails);
+router.get("/", controller.allUsers);
+router.post("/updateRole", jsonParser, controller.updateRole);
 
 module.exports = router;
