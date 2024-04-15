@@ -12,8 +12,9 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "../../components/PatientCard/PatientCard.css";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Grid, TableCell, tableCellClasses, TableRow } from "@mui/material";
-import PatientForm from "../PatientForm/PatientForm";
+import { Grid, Paper } from "@mui/material";
+
+import UpdateForm from "../PatientForm/UpdateForm";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -45,7 +46,7 @@ const style = {
   overflowY: "auto",
 };
 
-export default function PatientCard({ data }) {
+export default function PatientCard({ data, isADoctor }) {
   const [formData, setFormData] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
@@ -53,11 +54,6 @@ export default function PatientCard({ data }) {
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-
-  const handleFormData = (data) => {
-    setFormData(data);
-    console.log("Form Data from Form Card : ", formData);
-  };
 
   return (
     <div className="ml-5 pl-5 w-100">
@@ -87,71 +83,91 @@ export default function PatientCard({ data }) {
                   >
                     <CloseOutlinedIcon></CloseOutlinedIcon>
                   </Button>
+                  <div>
+                    <Typography variant="h3" color="primary" paddingBottom={3}>
+                      Patient Records
+                    </Typography>
+                  </div>
+                  <Paper elevation={3} style={{ padding: 20 }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6} className="grid">
+                        <Typography variant="h6" className="datafield">
+                          First Name: {data.firstName}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Date of Birth: {data.dob}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Gender: {data.gender}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Phone Number: {data.phoneNumber}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Address: {data.address}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Emergency Contact Name: {data.emergencyContactName}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Allergies: {data.allergies}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" className="datafield">
+                          Last Name: {data.lastName}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Blood Type: {data.bloodType}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Email: {data.email}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Emergency Contact Number:{" "}
+                          {data.emergencyContactNumber}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Insurance Provider: {data.insuranceProvider}
+                        </Typography>
+                        <Typography variant="h6" className="datafield">
+                          Insurance Number: {data.insuranceNumber}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
                   <Grid container spacing={2}>
-                    <Grid item xs={6} className="grid">
-                      <Typography variant="h6" className="datafield">
-                        First Name: {data.firstName}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Date of Birth: {data.dob}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Gender: {data.gender}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Phone Number: {data.phoneNumber}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Address: {data.address}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Emergency Contact Name: {data.emergencyContactName}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Medical Conditions: {data.medicalConditions}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Insurance Provider: {data.insuranceProvider}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Primary Care Physician: {data.primaryCarePhysician}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Assigned Bed: {data.assigned_bed}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="h6" className="datafield">
-                        Last Name: {data.lastName}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Blood Type: {data.bloodType}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Email: {data.email}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Emergency Contact Number: {data.emergencyContactNumber}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Allergies: {data.allergies}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Medications: {data.medications}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Insurance Number: {data.insuranceNumber}
-                      </Typography>
-                      <Typography variant="h6" className="datafield">
-                        Last Visit Date: {data.lastVisitDate}
-                      </Typography>
-                    </Grid>
+                    {data.records.map((record, index) => (
+                      <Grid item xs={12} key={index}>
+                        <Paper
+                          elevation={2}
+                          style={{ padding: 20, marginTop: 10 }}
+                        >
+                          <Typography variant="h6" className="datafield">
+                            Medications: {record.medications}
+                          </Typography>
+                          <Typography variant="h6" className="datafield">
+                            Medical Conditions: {record.medicalConditions}
+                          </Typography>
+                          <Typography variant="h6" className="datafield">
+                            Primary Care Physician:{" "}
+                            {record.primaryCarePhysician}
+                          </Typography>
+                          <Typography variant="h6" className="datafield">
+                            Assigned Bed: {record.assigned_bed}
+                          </Typography>
+                          <Typography variant="h6" className="datafield">
+                            Last Visited Date: {record.lastVisitDate}
+                          </Typography>
+                        </Paper>
+                      </Grid>
+                    ))}
                   </Grid>
                 </Box>
               </Modal>
             </div>
             <div>
-              <Button onClick={handleOpenModal}>Update</Button>
+              {isADoctor && <Button onClick={handleOpenModal}>Update</Button>}
               <Modal
                 open={openModal}
                 onClose={handleCloseModal}
@@ -166,8 +182,7 @@ export default function PatientCard({ data }) {
                     <CloseOutlinedIcon></CloseOutlinedIcon>
                   </Button>
                   <div>
-                    <PatientForm action="Update" />
-                    <Button></Button>
+                    <UpdateForm emailId={data.email}></UpdateForm>
                   </div>
                 </Box>
               </Modal>

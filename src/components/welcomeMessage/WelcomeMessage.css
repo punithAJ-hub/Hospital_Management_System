@@ -1,0 +1,27 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+.brandName{
+ 
+
+}
+
+.brandSub{
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.doctorImg{
+    width: 400px;
+    height: 400px;
+}
+
+.WelcomeBg{
+    background-image: url('blob.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: center;
+    
+}

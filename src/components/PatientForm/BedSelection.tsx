@@ -46,7 +46,7 @@ export default function BedSelection({ onSelectBed }) {
       {/* <Button sx={{ display: "block", mt: 0 }} onClick={handleOpen}>
         Assign Bed
       </Button> */}
-      <FormControl sx={{ m: 0, minWidth: 520 }}>
+      <FormControl sx={{ m: 0, minWidth: 380 }}>
         <InputLabel id="demo-controlled-open-select-label" onClick={handleOpen}>
           Assign bed
         </InputLabel>

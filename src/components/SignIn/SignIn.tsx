@@ -11,7 +11,7 @@ import { useAuth } from "../../utils/AuthProvider";
 function SignIn() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const { setToken, setUser, setName } = useAuth();
+  const { setToken, setUser, setName, setRole } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -30,14 +30,26 @@ function SignIn() {
       const response = await API.post("/users/signIn", formData).then(
         (res: AxiosResponse) => {
           console.log("Logging data", res);
+          console.log("user name after signin ", res.data.user.name);
+
+          setName(res.data.user.name);
+          setRole(res.data.user.role);
+          console.log("user role in signIn:", res.data.user.role);
 
           return res;
         }
       );
 
       if (response.status === 200) {
+        console.log("formdata email ", formData.email);
+
         setToken("This is A Token");
         setUser(formData.email);
+        console.log(
+          "user email from local storage : ",
+          localStorage.getItem("user")
+        );
+
         navigate("/HomePage");
       }
     } catch (error: any) {

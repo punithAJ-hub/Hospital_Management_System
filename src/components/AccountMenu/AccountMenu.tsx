@@ -29,10 +29,11 @@ export default function AccountMenu() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("name");
+    localStorage.removeItem("role");
     window.location.href = "/";
   };
 
-  const { user } = useAuth();
+  const { user, name } = useAuth();
   console.log("Name ", name);
 
   return (
@@ -89,17 +90,7 @@ export default function AccountMenu() {
         <MenuItem onClick={handleClose}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar />
-          My Account
-        </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />

@@ -5,11 +5,14 @@ import AccountMenu from "../AccountMenu/AccountMenu";
 import logo from "../../assets/images/logo.png";
 
 function NavBar() {
-  const { token, setToken } = useAuth();
+  const { token } = useAuth();
   console.log("Token during startUp", token);
 
   return (
-    <nav className="navbar navbar-expand-lg  navbar-dark bg-primary  py-2 px-5">
+    <nav
+      className="navbar navbar-expand-lg  navbar-dark  py-2 px-5"
+      style={{ backgroundColor: "#102C57" }}
+    >
       <img src={logo} alt="" style={{ width: "100px", height: "80px" }} />
       <button
         className="navbar-toggler"
@@ -29,9 +32,15 @@ function NavBar() {
       >
         <ul className="navbar-nav ">
           <li className="nav-item active me-4">
-            <a className="nav-link" href="/" style={{ color: "white" }}>
-              Home
-            </a>
+            {token && (
+              <a
+                className="nav-link"
+                href="/HomePage"
+                style={{ color: "white" }}
+              >
+                Home
+              </a>
+            )}
           </li>
           <li className="nav-item me-4">
             <a className="nav-link" href="#" style={{ color: "white" }}>

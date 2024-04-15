@@ -13,7 +13,6 @@ const createUser = async (req, res) => {
     return res.status(200).json({ message: "SignUp successful" });
   } catch (error) {
     if (error.code === 11000) {
-      // MongoDB duplicate key error code
       return res.status(400).json({ error: "Username already exists" });
     } else {
       return res.status(500).json({ error: error.toString() });
@@ -23,29 +22,21 @@ const createUser = async (req, res) => {
 
 const getUserWithDetails = async (req, res) => {
   try {
-    // Extract email and password from the request body
     const email = req.body.email;
     const password = req.body.password;
     console.log(email);
 
-    // Find a user with the provided email
     const user = await User.findOne({ email });
     console.log("User obj : ", user);
 
-    // If no user is found with the provided email
     if (!user) {
       return res.status(404).json({ error: "User not found" });
-    }
-    // If user is found, check if the provided password matches the user's password
-    else if (user.password === password) {
-      // Password matches, return a success response
-      return res.status(200).json({ message: "Login successful" });
+    } else if (user.password === password) {
+      return res.status(200).json({ message: "Login successful", user: user });
     } else {
-      // Password doesn't match, return an unauthorized response
       return res.status(401).json({ error: "Email/Password is incorrect" });
     }
   } catch (error) {
-    // Handle any errors that occur during the process
     return res.status(500).json({ error: error.message });
   }
 };

@@ -10,6 +10,7 @@ import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import "../../pages/WelcomePage/welcomePage.css";
 import WelcomeMessage from "../../components/welcomeMessage/WelcomeMessage";
+import Grid from "@mui/material/Grid";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -78,15 +79,13 @@ export default function WelcomePage() {
 
   return (
     <>
-      <div className="container welcomeForms">
-        <div className="row">
-          <div className="col">
-            <div>
-              <WelcomeMessage message={message} />
-            </div>
-          </div>
-          <div className="col ">
-            <div className="forms ">
+      <div className="container-fluid welcomeForms pt-5 welcomePageContainer">
+        <Grid container mt={20}>
+          <Grid item xs={6}>
+            <WelcomeMessage message={message} />
+          </Grid>
+          <Grid item xs={6}>
+            <div className="forms" style={{}}>
               <Box
                 sx={{ bgcolor: "background.paper", width: 500 }}
                 className="pr-0 shadow-sm p-3 mb-5 bg-white rounded"
@@ -118,8 +117,8 @@ export default function WelcomePage() {
                 </SwipeableViews>
               </Box>
             </div>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
     </>
   );

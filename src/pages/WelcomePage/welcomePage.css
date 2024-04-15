@@ -1,8 +1,15 @@
 .welcomeForms{
-    margin-top: 150px;
+    
     margin-right: -10px;
 }
 
 .forms{
     padding-left: 200px;
+}
+
+.welcomePageContainer{
+   
+    height: 100vh;
+    background-size: cover;
+   
 }

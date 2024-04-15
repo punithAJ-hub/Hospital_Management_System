@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -7,9 +7,10 @@ import Typography from "@mui/material/Typography";
 import API from "../../utils/API";
 import BedSelection from "./BedSelection";
 
-const PatientForm = ({ action }) => {
+const PatientForm = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [isAnUpdate, setIsAnUpdate] = useState(false);
 
   const [patientData, setPatientData] = useState({
     firstName: "",
@@ -45,13 +46,11 @@ const PatientForm = ({ action }) => {
     e.preventDefault();
     console.log(patientData);
     let response;
-    if (action === "Update") {
-      console.log("This is an update ");
-      response = await API.put("/patients/updateRecord", patientData);
-      console.log(response.data.message);
-    } else {
-      response = await API.post("/patients/addpatientdata", patientData);
-    }
+
+    console.log("This is an insert");
+
+    response = await API.post("/patients/addpatientdata", patientData);
+    console.log("inserted data : ", response.data);
 
     if (response?.status === 200) {
       setSuccess("Patient record has been added");
@@ -96,6 +95,7 @@ const PatientForm = ({ action }) => {
                 name="firstName"
                 value={patientData.firstName}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -106,6 +106,7 @@ const PatientForm = ({ action }) => {
                 name="lastName"
                 value={patientData.lastName}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -116,6 +117,7 @@ const PatientForm = ({ action }) => {
                 name="dob"
                 value={patientData.dob}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -126,6 +128,7 @@ const PatientForm = ({ action }) => {
                 name="gender"
                 value={patientData.gender}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -136,6 +139,7 @@ const PatientForm = ({ action }) => {
                 name="bloodType"
                 value={patientData.bloodType}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -146,6 +150,7 @@ const PatientForm = ({ action }) => {
                 name="phoneNumber"
                 value={patientData.phoneNumber}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -156,6 +161,7 @@ const PatientForm = ({ action }) => {
                 name="email"
                 value={patientData.email}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -166,6 +172,7 @@ const PatientForm = ({ action }) => {
                 name="address"
                 value={patientData.address}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -176,6 +183,7 @@ const PatientForm = ({ action }) => {
                 name="emergencyContactName"
                 value={patientData.emergencyContactName}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -186,6 +194,7 @@ const PatientForm = ({ action }) => {
                 name="emergencyContactNumber"
                 value={patientData.emergencyContactNumber}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -208,16 +217,7 @@ const PatientForm = ({ action }) => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                label="Medications"
-                name="medications"
-                value={patientData.medications}
-                onChange={handleChange}
-              />
-            </Grid>
+
             <Grid item xs={6}>
               <TextField
                 required
@@ -226,6 +226,7 @@ const PatientForm = ({ action }) => {
                 name="insuranceProvider"
                 value={patientData.insuranceProvider}
                 onChange={handleChange}
+                hidden={isAnUpdate}
               />
             </Grid>
             <Grid item xs={6}>
@@ -235,6 +236,18 @@ const PatientForm = ({ action }) => {
                 label="Insurance Number"
                 name="insuranceNumber"
                 value={patientData.insuranceNumber}
+                onChange={handleChange}
+                hidden={isAnUpdate}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                required
+                fullWidth
+                label="Medications"
+                name="medications"
+                value={patientData.medications}
                 onChange={handleChange}
               />
             </Grid>
@@ -252,7 +265,7 @@ const PatientForm = ({ action }) => {
               <TextField
                 required
                 fullWidth
-                label="Last Visit Date"
+                label="Visited Date"
                 name="lastVisitDate"
                 type="date" // Add type prop here
                 value={patientData.lastVisitDate}
@@ -268,7 +281,7 @@ const PatientForm = ({ action }) => {
           </Grid>
           <Box mt={3}>
             <Button variant="contained" color="primary" type="submit">
-              {action ? action : "Submit"}
+              Submit
             </Button>
           </Box>
         </form>

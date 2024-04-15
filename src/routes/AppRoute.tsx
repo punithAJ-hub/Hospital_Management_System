@@ -9,6 +9,8 @@ import Patients from "../components/Patients/Patients";
 import PatientForm from "../components/PatientForm/PatientForm";
 import Beds from "../components/Beds/Beds";
 import UserCard from "../components/UserCard/UserCard";
+import Schedule from "../pages/Schedule/Schecule";
+import Analytics from "../pages/Analytics/Analytics";
 
 const AppRoute = () => {
   const { token } = useAuth();
@@ -33,7 +35,7 @@ const AppRoute = () => {
       children: [
         {
           path: "HomePage",
-          element: <HomePage children={undefined} />,
+          element: <HomePage children={<Dashboard />} />,
         },
         {
           path: "patients",
@@ -54,6 +56,14 @@ const AppRoute = () => {
         {
           path: "manageAccounts",
           element: <HomePage children={<UserCard />} />,
+        },
+        {
+          path: "schedule",
+          element: <HomePage children={<Schedule />} />,
+        },
+        {
+          path: "analytics",
+          element: <HomePage children={<Analytics />} />,
         },
       ],
     },

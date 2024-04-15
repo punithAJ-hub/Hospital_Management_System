@@ -23,19 +23,18 @@ export default function Beds() {
     { bed_id: "1002", occupied: false },
   ]);
 
-  async function getAllBeds() {
-    const response = await API.get("/beds/all");
-    if (response.status == 200) {
-      const allbeds = response.data.beds;
-      setBeds(allbeds);
-    } else {
-      console.log(response.data.error);
-    }
-  }
-
   useEffect(() => {
+    async function getAllBeds() {
+      const response = await API.get("/beds/all");
+      if (response.status == 200) {
+        const allbeds = response.data.beds;
+        setBeds(allbeds);
+      } else {
+        console.log(response.data.error);
+      }
+    }
     getAllBeds();
-  }, [beds]);
+  }, []);
 
   return (
     <>

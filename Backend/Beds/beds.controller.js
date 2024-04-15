@@ -66,7 +66,8 @@ const getVacantBeds = async (req, res) => {
 
 const getAllBeds = async (req, res) => {
   try {
-    const beds = Bed.find({}, { _id: 0 });
+    const beds = await Bed.find({});
+
     return res.status(200).json({ beds: beds });
   } catch (error) {
     return res.status(500).json({ error: error });
