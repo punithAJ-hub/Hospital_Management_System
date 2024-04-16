@@ -67,7 +67,7 @@ export default function SideMenu() {
             </ListItemIcon>
             <Typography variant="inherit">Dashboard</Typography>
           </MenuItem>
-          {isDoctor && (
+          {(isDoctor || isAdmin) && (
             <MenuItem
               className="mb-5 sidebarLink"
               onClick={navigateToPatientForm}
@@ -85,7 +85,7 @@ export default function SideMenu() {
             </ListItemIcon>
             <Typography variant="inherit">
               {" "}
-              {isDoctor ? "Patients" : "My records"}{" "}
+              {isDoctor || isAdmin ? "Patients" : "My records"}{" "}
             </Typography>
           </MenuItem>
 
@@ -103,6 +103,17 @@ export default function SideMenu() {
                 <InventoryIcon fontSize="small" />
               </ListItemIcon>
               <Typography variant="inherit">Inventories </Typography>
+              <img
+                src="comingsoon.webp"
+                alt=""
+                style={{
+                  width: 50,
+                  height: 50,
+                  position: "absolute",
+                  right: 0,
+                  top: 10,
+                }}
+              />
             </MenuItem>
           )}
           {(isDoctor || isAdmin) && (

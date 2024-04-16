@@ -11,6 +11,7 @@ import Checkbox from "@mui/material/Checkbox";
 
 export default function Patients(params) {
   const [isDoctor, setIsDoctor] = React.useState(false);
+  const [isAdmin, setIsAdmin] = React.useState(false);
   const [myPatients, setMyPatients] = React.useState(false);
   const [user, setUser] = React.useState(localStorage.getItem("user"));
   const Item = styled(Paper)(({ theme }) => ({
@@ -33,6 +34,7 @@ export default function Patients(params) {
     setPatientRecords(records);
     const role = localStorage.getItem("role");
     setIsDoctor(role === "doctor");
+    setIsAdmin(role === "admin");
     console.log("User in patientRecord : ", user);
     let patientsUnderCare = [];
     records.forEach((document) => {
@@ -74,7 +76,7 @@ export default function Patients(params) {
           />
         </Box>
       )}
-      {isDoctor ? (
+      {isDoctor || isAdmin ? (
         <Box sx={{ flexGrow: 1 }} className="mt-5 h-100">
           <Grid
             container
