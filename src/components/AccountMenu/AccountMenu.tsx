@@ -34,7 +34,7 @@ export default function AccountMenu() {
   };
 
   const { user, name } = useAuth();
-  console.log("Name ", name);
+  // console.log("Name ", name);
 
   return (
     <React.Fragment>

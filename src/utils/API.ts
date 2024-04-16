@@ -165,3 +165,82 @@ export const availableTimes = [
 
 
 
+export const years= [
+  "2001",
+  "2002",
+  "2003",
+  "2004",
+  "2005",
+  "2006",
+  "2007",
+  "2008",
+  "2009",
+  "2010",
+  "2011",
+  "2012",
+  "2013",
+  "2014"
+]
+
+export const dataset = [
+  {
+    admissions: 39,
+    discharges: 37,
+    month: "Jan",
+  },
+  {
+    admissions: 50,
+    discharges: 52,
+    month: "Feb",
+  },
+  {
+    admissions: 47,
+    discharges: 53,
+    month: "Mar",
+  },
+  {
+    admissions: 54,
+    discharges: 56,
+    month: "Apr",
+  },
+  {
+    admissions: 57,
+    discharges: 39,
+    month: "May",
+  },
+  {
+    admissions: 50,
+    discharges: 53,
+    month: "June",
+  },
+  {
+    admissions: 59,
+    discharges: 57,
+    month: "July",
+  },
+  {
+    admissions: 55,
+    discharges: 50,
+    month: "Aug",
+  },
+  {
+    admissions: 51,
+    discharges: 50,
+    month: "Sept",
+  },
+  {
+    admissions: 60,
+    discharges: 60,
+    month: "Oct",
+  },
+  {
+    admissions: 67,
+    discharges: 64,
+    month: "Nov",
+  },
+  {
+    admissions: 31,
+    discharges: 20,
+    month: "Dec",
+  },
+];

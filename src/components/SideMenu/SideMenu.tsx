@@ -18,36 +18,36 @@ import { useEffect } from "react";
 export default function SideMenu() {
   const [isDoctor, setIsDoctor] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
-
+  const [isUser, setIsUser] = React.useState(false);
   const navigateToDashboard = () => {
-    console.log("Navigating to dashboard");
+    // console.log("Navigating to dashboard");
     window.location.href = "/dashboard";
   };
 
   const navigateToPatients = () => {
-    console.log("Navigating to patients");
+    // console.log("Navigating to patients");
     window.location.href = "/patients";
   };
 
   const navigateToPatientForm = () => {
-    console.log("Navigating to patientInformation");
+    // console.log("Navigating to patientInformation");
     window.location.href = "/patientInformation";
   };
 
   const navigateToBeds = () => {
-    console.log("Navigating to beds");
+    // console.log("Navigating to beds");
     window.location.href = "/beds";
   };
   const navigateToManageAccounts = () => {
-    console.log("Navigating to manageAccounts");
+    // console.log("Navigating to manageAccounts");
     window.location.href = "/manageAccounts";
   };
   const navigateToSchedule = () => {
-    console.log("Navigating to schedule");
+    // console.log("Navigating to schedule");
     window.location.href = "/schedule";
   };
   const navigateToAnalytics = () => {
-    console.log("Navigating to analytics");
+    // console.log("Navigating to analytics");
     window.location.href = "/analytics";
   };
 
@@ -55,6 +55,7 @@ export default function SideMenu() {
     const userRole = localStorage.getItem("role");
     setIsAdmin(userRole === "admin");
     setIsDoctor(userRole === "doctor");
+    setIsUser(userRole === "user");
   }, []);
 
   return (
@@ -147,6 +148,25 @@ export default function SideMenu() {
             </MenuItem>
           )}
         </MenuList>
+        {isUser && (
+          <MenuItem className="mb-5 sidebarLink">
+            <ListItemIcon>
+              <InventoryIcon fontSize="small" />
+            </ListItemIcon>
+            <Typography variant="inherit">Bills </Typography>
+            <img
+              src="comingsoon.webp"
+              alt=""
+              style={{
+                width: 50,
+                height: 50,
+                position: "absolute",
+                right: 0,
+                top: 10,
+              }}
+            />
+          </MenuItem>
+        )}
       </Paper>
     </div>
   );

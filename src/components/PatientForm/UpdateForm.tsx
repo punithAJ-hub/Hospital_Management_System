@@ -38,11 +38,11 @@ const UpdateForm = ({ emailId }) => {
     console.log("Email ID : ", emailId);
 
     e.preventDefault();
-    console.log(updatedPatientData);
+    // console.log(updatedPatientData);
     let response;
-    console.log("This is an update ");
+    // console.log("This is an update ");
     response = await API.put("/patients/updateRecord", updatedPatientData);
-    console.log(response.data.message);
+    // console.log(response.data.message);
 
     if (response?.status === 200) {
       setSuccess("Patient record has been added");

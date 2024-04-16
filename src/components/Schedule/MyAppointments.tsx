@@ -20,9 +20,9 @@ export default function MyAppointments({ email }) {
   useEffect(() => {
     const schedule = async () => {
       try {
-        console.log("Patient Email in MyAppointments : ", email);
+        // console.log("Patient Email in MyAppointments : ", email);
         const res = await API.get(`/schedule/myappointment/${email}`);
-        console.log(res.data.schedule);
+        // console.log(res.data.schedule);
         const data = res.data.schedule;
         if (res.status === 200) {
           const filteredMeetings = data.flatMap((obj) => {
@@ -48,7 +48,7 @@ export default function MyAppointments({ email }) {
       `/schedule/cancelAppointment/${doctorEmail}/${date}/${time}`
     );
 
-    console.log("Cancel Meeting response : ", res.data.message);
+    // console.log("Cancel Meeting response : ", res.data.message);
     setMessage(res.data.message);
   };
 

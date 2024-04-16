@@ -51,10 +51,10 @@ const scheduleAppointment = async (req, res) => {
     time: time,
   };
 
-  console.log("Data to schedule appointment : ", data);
+  // console.log("Data to schedule appointment : ", data);
   try {
     const schedule = await Schedule.findOne({ email: doctorEmail });
-    console.log(schedule);
+    // console.log(schedule);
 
     const updatedMeetings = await Schedule.findOneAndUpdate(
       { email: doctorEmail },
@@ -87,7 +87,7 @@ const scheduleAppointment = async (req, res) => {
 
 const getAvailabilty = async (req, res) => {
   const email = req.params.email;
-  console.log("Email : ", email);
+  // console.log("Email : ", email);
   try {
     const schedule = await Schedule.findOne({ email });
     if (schedule) {
@@ -104,7 +104,7 @@ const getAvailabilty = async (req, res) => {
 const getMyScheduleMeetings = async (req, res) => {
   try {
     const email = req.params.email;
-    console.log("Email : ", email);
+    // console.log("Email : ", email);
 
     const appointments = await Schedule.find({
       "meetings.patientEmail": email,
@@ -125,13 +125,13 @@ const getMyScheduleMeetings = async (req, res) => {
 const getMyMeetings = async (req, res) => {
   try {
     const email = req.params.email;
-    console.log("Email : ", email);
+    // console.log("Email : ", email);
 
     const appointments = await Schedule.find({
       email,
     });
 
-    console.log("Appointments : ", appointments);
+    // console.log("Appointments : ", appointments);
 
     if (appointments.length > 0) {
       return res.status(200).json({ meetings: appointments[0].meetings });

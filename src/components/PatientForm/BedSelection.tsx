@@ -19,13 +19,13 @@ export default function BedSelection({ onSelectBed }) {
       const array = response.data.beds.map((bed) => bed.bed_id);
       setBeds(array);
     } else {
-      console.log(response.data.error);
+      // console.log(response.data.error);
     }
   }
 
   useEffect(() => {
     const beds = getVacantBeds();
-  }, [beds]);
+  }, []);
 
   const handleChange = (event) => {
     const selectedBed = event.target.value;

@@ -12,6 +12,8 @@ const PatientForm = () => {
   const [error, setError] = useState("");
   const [isAnUpdate, setIsAnUpdate] = useState(false);
 
+  useEffect(() => {}, []);
+
   const [patientData, setPatientData] = useState({
     firstName: "",
     lastName: "",
@@ -44,13 +46,13 @@ const PatientForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(patientData);
+    // console.log(patientData);
     let response;
 
-    console.log("This is an insert");
+    // console.log("This is an insert");
 
     response = await API.post("/patients/addpatientdata", patientData);
-    console.log("inserted data : ", response.data);
+    // console.log("inserted data : ", response.data);
 
     if (response?.status === 200) {
       setSuccess("Patient record has been added");

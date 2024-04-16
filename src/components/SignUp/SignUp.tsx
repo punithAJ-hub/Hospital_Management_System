@@ -25,17 +25,17 @@ function SignUp() {
     event.preventDefault();
 
     try {
-      console.log("Before sending data formdata is : ", formData);
+      // console.log("Before sending data formdata is : ", formData);
 
       // Send form data to backend
       const response = await API.post("/users/signUp", formData).then(
         (data) => {
-          console.log(data);
+          // console.log(data);
           return data;
         }
       );
 
-      console.log("Status", response.status);
+      // console.log("Status", response.status);
 
       if (response.status === 200) {
         setSuccessMessage("Successfully Registered.");

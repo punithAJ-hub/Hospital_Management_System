@@ -3,12 +3,10 @@ const Bed = require("./beds.model");
 
 const createBed = async (req, res) => {
   const body = req.body;
-  console.log(body);
+  // console.log(body);
 
   try {
     const bedDoc = new Bed(body);
-    console.log("Recieved in createUser");
-    console.log(bedDoc);
     const bed = await bedDoc.save();
     return res.status(200).json({ message: "Bed added Sucessfully" });
   } catch (error) {
@@ -22,7 +20,7 @@ const updateBed = async (req, res) => {
     const bed = await Bed.updateOne({ bed_id: id }, { occupied: true });
 
     if (bed) {
-      console.log(bed);
+      // console.log(bed);
       return res.json(bed);
     } else {
       return res.status(404).json({ error: `No bed found by id: ${id}` });
@@ -37,11 +35,11 @@ const getBedById = async (req, res) => {
     // Extract email and password from the request body
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email);
+    // console.log(email);
 
     // Find a user with the provided email
     const bed = await Bed.findOne({ email });
-    console.log("User obj : ", user);
+    // console.log("User obj : ", user);
 
     // If no user is found with the provided email
     if (!bed) {

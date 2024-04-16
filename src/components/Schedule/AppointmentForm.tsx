@@ -59,13 +59,13 @@ export default function AppointmentForm(params) {
       date: date,
       time: time,
     };
-    console.log("Scheduling an appointment");
-    console.log("Form Data : ", formData);
+    // console.log("Scheduling an appointment");
+    // console.log("Form Data : ", formData);
 
     const res = await API.post(`/schedule/appointment`, formData);
 
     setMessage(res.data.message);
-    console.log("After scheduling appointment", res.data);
+    // console.log("After scheduling appointment", res.data);
   };
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function AppointmentForm(params) {
       const users = response.data.users;
       const userEmail = localStorage.getItem("user");
       setPatientEmail(userEmail);
-      console.log("User Email ", userEmail);
+      // console.log("User Email ", userEmail);
       const doctors = users.filter((user) => user.role === "doctor");
       setDoctors(doctors);
     };
@@ -92,8 +92,8 @@ export default function AppointmentForm(params) {
           `/schedule/getAvailability/${doctorEmail}`
         );
         const schedule = response.data.schedule;
-        console.log("Changed date : ", date);
-        console.log("Availability : ", schedule.availability);
+        // console.log("Changed date : ", date);
+        // console.log("Availability : ", schedule.availability);
 
         const availabilityEntry = schedule.availability.find(
           (entry) => entry.date === date
@@ -114,7 +114,7 @@ export default function AppointmentForm(params) {
 
   return (
     <>
-      {console.log("Is User ", isUser)}
+      {/* {console.log("Is User ", isUser)} */}
       {isUser && (
         <Box
           component="form"

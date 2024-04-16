@@ -13,6 +13,7 @@ import Modal from "@mui/material/Modal";
 import "../../components/PatientCard/PatientCard.css";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { Grid, Paper } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 import UpdateForm from "../PatientForm/UpdateForm";
 
@@ -143,6 +144,16 @@ export default function PatientCard({ data, isADoctor }) {
                           elevation={2}
                           style={{ padding: 20, marginTop: 10 }}
                         >
+                          <Box
+                            component={"div"}
+                            justifyContent={"end"}
+                            display={"flex"}
+                            onClick={() => {
+                              deleterecord(record);
+                            }}
+                          >
+                            <ClearIcon color="primary"></ClearIcon>
+                          </Box>
                           <Typography variant="h6" className="datafield">
                             Medications: {record.medications}
                           </Typography>

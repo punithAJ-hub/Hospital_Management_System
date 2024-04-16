@@ -24,31 +24,31 @@ function SignIn() {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log("before sending In sighiN ", formData);
+    // console.log("before sending In sighiN ", formData);
 
     try {
       const response = await API.post("/users/signIn", formData).then(
         (res: AxiosResponse) => {
-          console.log("Logging data", res);
-          console.log("user name after signin ", res.data.user.name);
+          // console.log("Logging data", res);
+          // console.log("user name after signin ", res.data.user.name);
 
           setName(res.data.user.name);
           setRole(res.data.user.role);
-          console.log("user role in signIn:", res.data.user.role);
+          // console.log("user role in signIn:", res.data.user.role);
 
           return res;
         }
       );
 
       if (response.status === 200) {
-        console.log("formdata email ", formData.email);
+        // console.log("formdata email ", formData.email);
 
         setToken("This is A Token");
         setUser(formData.email);
-        console.log(
-          "user email from local storage : ",
-          localStorage.getItem("user")
-        );
+        // console.log(
+        //   "user email from local storage : ",
+        //   localStorage.getItem("user")
+        // );
 
         navigate("/HomePage");
       }

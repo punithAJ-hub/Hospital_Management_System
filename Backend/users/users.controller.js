@@ -7,8 +7,8 @@ const createUser = async (req, res) => {
 
   try {
     const userDoc = new User(body);
-    console.log("Recieved in createUser");
-    console.log(userDoc);
+    // console.log("Recieved in createUser");
+    // console.log(userDoc);
     const user = await userDoc.save();
     return res.status(200).json({ message: "SignUp successful" });
   } catch (error) {
@@ -24,10 +24,10 @@ const getUserWithDetails = async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email);
+    // console.log(email);
 
     const user = await User.findOne({ email });
-    console.log("User obj : ", user);
+    // console.log("User obj : ", user);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -53,8 +53,8 @@ const allUsers = async (req, res) => {
 const updateRole = async (req, res) => {
   const emailId = req.body.email;
   const roles = req.body.role;
-  console.log("User email : ", emailId);
-  console.log("role ", roles);
+  // console.log("User email : ", emailId);
+  // console.log("role ", roles);
   try {
     await User.updateOne({ email: emailId }, { role: roles });
     return res.status(200).json({ message: "Successfully updated user role" });

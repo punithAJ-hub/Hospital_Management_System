@@ -30,7 +30,7 @@ export default function Beds() {
         const allbeds = response.data.beds;
         setBeds(allbeds);
       } else {
-        console.log(response.data.error);
+        // console.log(response.data.error);
       }
     }
     getAllBeds();

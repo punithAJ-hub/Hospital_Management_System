@@ -35,7 +35,7 @@ export default function Patients(params) {
     const role = localStorage.getItem("role");
     setIsDoctor(role === "doctor");
     setIsAdmin(role === "admin");
-    console.log("User in patientRecord : ", user);
+    // console.log("User in patientRecord : ", user);
     let patientsUnderCare = [];
     records.forEach((document) => {
       const lastRecord = document.records[document.records.length - 1];
@@ -49,9 +49,9 @@ export default function Patients(params) {
       }
     });
 
-    console.log("records ", records);
+    // console.log("records ", records);
 
-    console.log("Patients under my care : ", patientsUnderCare);
+    // console.log("Patients under my care : ", patientsUnderCare);
     myPatients
       ? setPatientsUnderMyCare(patientsUnderCare)
       : setPatientsUnderMyCare(records);

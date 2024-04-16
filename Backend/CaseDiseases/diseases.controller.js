@@ -26,14 +26,15 @@ const getDataByDiseaseAndCounty = async (req, res) => {
               $cond: [{ $eq: ["$Sex", "Female"] }, "$Count", 0],
             },
           },
+          population: { $sum: "$Population" }, // Calculate total population
         },
       },
       {
         $project: {
           year: "$_id",
-          Total: { $sum: ["$male", "$female"] },
-          male: 1,
-          female: 1,
+          Total: { $sum: ["$male", "$female"] }, // Calculate total count
+          rate: { $divide: [{ $sum: ["$male", "$female"] }, "$population"] }, // Calculate rate
+          population: "$population",
           _id: 0,
         },
       },

@@ -40,7 +40,7 @@ export default function UserCard() {
 
     const fetchUsers = async () => {
       const users = await getAllUsers();
-      console.log("All users : ");
+      // console.log("All users : ");
       const userNames = users.map((user: any) => user.name);
       const namesAndEmails = users.map((user) => ({
         [user.name]: user.email,
@@ -48,7 +48,7 @@ export default function UserCard() {
 
       setNameAndEmail(namesAndEmails);
       setNames(userNames);
-      console.log("Names and Emails  : ", namesAndEmails);
+      // console.log("Names and Emails  : ", namesAndEmails);
     };
 
     fetchUsers();
@@ -69,7 +69,7 @@ export default function UserCard() {
   };
 
   const getEmail = (name) => {
-    console.log("name[0] ", name[0]);
+    // console.log("name[0] ", name[0]);
 
     for (const obj of nameAndEmail) {
       const keys = Object.keys(obj);
@@ -87,12 +87,12 @@ export default function UserCard() {
       role: selectedRole,
     };
 
-    console.log("Updated with data ", data);
-    console.log("Person Name : ", personName);
+    // console.log("Updated with data ", data);
+    // console.log("Person Name : ", personName);
 
     const response = await API.post("/users/updateRole", data);
 
-    console.log(response.data.message);
+    // console.log(response.data.message);
   };
 
   return (

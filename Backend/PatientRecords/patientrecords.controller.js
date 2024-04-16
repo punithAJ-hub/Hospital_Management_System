@@ -24,7 +24,7 @@ const createPatientRecord = async (req, res) => {
       },
     ];
 
-    console.log("Records : ", records);
+    // console.log("Records : ", records);
 
     const patientRecordDoc = new PatientRecord({ ...body, records });
 
@@ -34,7 +34,7 @@ const createPatientRecord = async (req, res) => {
       const bedRes = await axios.put(
         `http://localhost:3000/beds/assign/${bedId}`
       );
-      console.log("Bed updated:", bedRes.data);
+      // console.log("Bed updated:", bedRes.data);
     }
 
     return res.status(200).json({ message: "Data added successfully" });
@@ -68,7 +68,7 @@ const updatePatientRecord = async (req, res) => {
         `http://localhost:3000/beds/assign/${bedId}`
       );
 
-      console.log("Bed updated:", bedRes.data);
+      // console.log("Bed updated:", bedRes.data);
     }
 
     return res.status(200).json({ message: "Data updated successfully", user });
@@ -80,7 +80,7 @@ const updatePatientRecord = async (req, res) => {
 const getAllPatients = async (req, res) => {
   try {
     const patientRecords = await PatientRecord.find({});
-    console.log("User obj : ", patientRecords);
+    // console.log("User obj : ", patientRecords);
 
     if (!patientRecords) {
       return res.status(404).json({ error: "Patient Records not found" });

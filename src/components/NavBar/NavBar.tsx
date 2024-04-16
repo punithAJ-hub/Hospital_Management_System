@@ -6,7 +6,7 @@ import logo from "../../assets/images/logo.png";
 
 function NavBar() {
   const { token } = useAuth();
-  console.log("Token during startUp", token);
+  // console.log("Token during startUp", token);
 
   return (
     <nav

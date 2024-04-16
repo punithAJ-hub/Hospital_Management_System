@@ -11,7 +11,7 @@ export default function BedUtilization(params) {
     const getBeds = async () => {
       const response = await API.get("/beds/all");
       const beds = response.data.beds;
-      console.log("Beds : ", beds);
+      // console.log("Beds : ", beds);
 
       setOverall(beds.length);
       const available = beds.filter((bed) => bed.occupied === false);

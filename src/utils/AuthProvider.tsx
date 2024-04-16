@@ -40,12 +40,12 @@ const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       localStorage.setItem("token", token);
-      console.log("User while setting token", user);
+      // console.log("User while setting token", user);
       localStorage.setItem("user", user);
       localStorage.setItem("name", name);
-      console.log("User name setting token", name);
+      // console.log("User name setting token", name);
       localStorage.setItem("role", role);
-      console.log("User role setting token", role);
+      // console.log("User role setting token", role);
     }
   }, [token, user, name, role]);
 
