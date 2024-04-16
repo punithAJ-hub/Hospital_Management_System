@@ -1,0 +1,57 @@
+{
+    "_id": {
+        "$oid": "6616eb62df7df29988352c02"
+    },
+    "email": "punithaj0007@gmail.com",
+    "availability": [
+        {
+            "date": "04-10-2024",
+            "time": [
+                "10:30"
+            ]
+        }
+    ],
+    "meetings": [
+        {
+            "patientEmail": "punithaj@gmail.com",
+            "patientName": "Punith A J",
+            "date": "04-10-2024",
+            "time": "2:00"
+        },
+        {
+            "patientEmail": "poojashekhar@gmail.com",
+            "patientName": "Pooja Shekhar",
+            "date": "04-12-2024",
+            "time": "13:00"
+        },
+        {
+            "doctorEmail": "poojashekhar@gmail.com",
+            "patientEmail": "poojashekhar@gmail.com",
+            "patientName": "Pooja Shekhar",
+            "date": "04-12-2024",
+            "time": "13:00"
+        },
+        {
+            "doctorEmail": "poojashekhar@gmail.com",
+            "patientEmail": "poojashekhar@gmail.com",
+            "patientName": "Pooja Shekhar",
+            "date": "04-16-2024",
+            "time": "12:30"
+        },
+        {
+            "doctorEmail": "poojashekhar@gmail.com",
+            "patientEmail": "punithaj0007@gmail.com",
+            "patientName": "punith",
+            "date": "04-15-2024",
+            "time": "11:00"
+        },
+        {
+            "doctorEmail": "poojashekhar@gmail.com",
+            "patientEmail": "punithaj0007@gmail.com",
+            "patientName": "punith",
+            "date": "04-15-2024",
+            "time": "14:30"
+        }
+    ],
+    "__v": 0
+}

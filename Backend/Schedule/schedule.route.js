@@ -16,5 +16,11 @@ router.get(
   jsonParser,
   controller.getMyScheduleMeetings
 );
-router.get("/myschedule/:email", jsonParser, controller.getMyScheduleMeetings);
+router.get("/myschedule/:email", jsonParser, controller.getMyMeetings);
+router.delete(
+  "/cancelAppointment/:email/:date/:time",
+  jsonParser,
+  controller.cancelAppointment
+);
+
 module.exports = router;

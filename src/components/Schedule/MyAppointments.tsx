@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Person2Icon from "@mui/icons-material/Person2";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export default function MyAppointments({ email }) {
   const getName = (emailId: String) => {
@@ -14,6 +15,7 @@ export default function MyAppointments({ email }) {
   };
 
   const [appointments, setAppointments] = useState([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const schedule = async () => {
@@ -35,7 +37,20 @@ export default function MyAppointments({ email }) {
       }
     };
     schedule();
-  }, [email]);
+  }, [email, message]);
+
+  const cancelAppointment = async (appointment) => {
+    const doctorEmail = appointment.doctorEmail;
+    const date = appointment.date;
+    const time = appointment.time;
+
+    const res = await API.delete(
+      `/schedule/cancelAppointment/${doctorEmail}/${date}/${time}`
+    );
+
+    console.log("Cancel Meeting response : ", res.data.message);
+    setMessage(res.data.message);
+  };
 
   return (
     <>
@@ -47,6 +62,16 @@ export default function MyAppointments({ email }) {
           return (
             <Grid item xs={4} style={{ padding: 40 }}>
               <Paper sx={{ p: 2, mt: 3 }} key={appointment.time}>
+                <Box
+                  component={"div"}
+                  justifyContent={"end"}
+                  display={"flex"}
+                  onClick={() => {
+                    cancelAppointment(appointment);
+                  }}
+                >
+                  <ClearIcon color="primary"></ClearIcon>
+                </Box>
                 <Typography fontSize={18} color={"#1B3C73"}>
                   {" "}
                   <CalendarMonthIcon
@@ -67,6 +92,10 @@ export default function MyAppointments({ email }) {
             </Grid>
           );
         })}
+
+        <Box mt={4}>
+          <Typography color={"green"}>{message ? message : ""}</Typography>
+        </Box>
       </Grid>
     </>
   );

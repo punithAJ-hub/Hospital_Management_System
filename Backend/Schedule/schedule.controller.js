@@ -131,8 +131,10 @@ const getMyMeetings = async (req, res) => {
       email,
     });
 
+    console.log("Appointments : ", appointments);
+
     if (appointments.length > 0) {
-      return res.status(200).json({ meetings: appointments.schedule });
+      return res.status(200).json({ meetings: appointments[0].meetings });
     } else {
       return res.status(404).json({ message: "No scheduled Meetings" });
     }
@@ -143,10 +145,36 @@ const getMyMeetings = async (req, res) => {
   }
 };
 
+const cancelAppointment = async (req, res) => {
+  const date = req.params.date;
+  const time = req.params.time;
+  const doctorEmail = req.params.email;
+
+  try {
+    const result = await Schedule.findOneAndUpdate(
+      { email: doctorEmail },
+      {
+        $pull: { meetings: { date: date, time: time } },
+      },
+
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: `Your appointment  ${date} and ${time} has been cancelled.`,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: `Unable to cancel your appointment` });
+  }
+};
+
 module.exports = {
   createSchedule,
   getAvailabilty,
   scheduleAppointment,
   getMyScheduleMeetings,
   getMyMeetings,
+  cancelAppointment,
 };

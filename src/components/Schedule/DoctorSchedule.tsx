@@ -11,17 +11,18 @@ import Person2Icon from "@mui/icons-material/Person2";
 
 export default function DoctorSchedule({ email, isADoctor }) {
   const [meetings, setMeetings] = React.useState([]);
-  const [isDoctor, setIsDoctor] = React.useState(isADoctor);
+  const [isDoctor, setIsDoctor] = React.useState("");
   useEffect(() => {
     const docsSchedule = async () => {
       const res = await API.get(`/schedule/myschedule/${email}`);
-      const schemeetings = res.data.schedule[0].meetings;
+      const schemeetings = res.data.meetings;
       setMeetings(schemeetings);
       console.log("Doc Meetings : ", schemeetings);
     };
 
     docsSchedule();
-  }, []);
+    setIsDoctor(isADoctor);
+  }, [isDoctor]);
   return (
     <>
       {isADoctor && (
