@@ -12,6 +12,7 @@ import API from "../../utils/API";
 import { flexbox } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import { Label } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,6 +32,7 @@ export default function UserCard() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [names, setNames] = useState<string[]>([]);
   const [nameAndEmail, setNameAndEmail] = useState<string[]>([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const getAllUsers = async () => {
@@ -52,7 +54,7 @@ export default function UserCard() {
     };
 
     fetchUsers();
-  }, []);
+  }, [message]);
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
@@ -91,6 +93,10 @@ export default function UserCard() {
     // console.log("Person Name : ", personName);
 
     const response = await API.post("/users/updateRole", data);
+
+    if (response.status === 200) {
+      setMessage(response.data.message);
+    }
 
     // console.log(response.data.message);
   };
@@ -163,6 +169,9 @@ export default function UserCard() {
             Submit
           </Button>
         </div>
+        <Box pt={3}>
+          <Typography color={"green"}>{message}</Typography>
+        </Box>
       </Paper>
     </>
   );

@@ -16,6 +16,7 @@ import { Grid, Paper } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import UpdateForm from "../PatientForm/UpdateForm";
+import API from "../../utils/API";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -31,6 +32,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
+const deleterecord = async (record) => {
+  try {
+    const res = await API.delete(
+      `/patients/deleteRecord/${record.lastVisitDate}`
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const style = {
   position: "absolute" as "absolute",

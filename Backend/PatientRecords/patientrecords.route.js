@@ -12,6 +12,11 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.post("/addpatientdata", jsonParser, controller.createPatientRecord);
 router.get("/all", jsonParser, controller.getAllPatients);
 router.put("/updateRecord", jsonParser, controller.updatePatientRecord);
+router.delete(
+  "/deleteRecord/:month/:day/:year",
+  jsonParser,
+  controller.deletePatientRecord
+);
 
 // router.get('/:id',urlencodedParser, controller.getUserWithDetails);
 

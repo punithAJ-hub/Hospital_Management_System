@@ -19,15 +19,18 @@ export default function RateOfInfection({ rates }) {
     console.log("Rates in Rate chart ", rates);
 
     setNewRates(rates);
-    const filtered = rates.find((obj) => obj.hasOwnProperty(year));
-    console.log("filtered data ", filtered);
+    if (rates) {
+      const filtered = rates.find((obj) => obj.hasOwnProperty(year));
+      console.log("filtered data ", filtered);
 
-    setRateByYear(filtered);
-    const multiplier = filtered[year] * 100000;
-    console.log("year selected ", year);
-    console.log("Rate at year : ", multiplier);
-
-    setMultipliedRate(multiplier);
+      setRateByYear(filtered);
+      if (filtered) {
+        const multiplier = filtered[year] * 100000;
+        console.log("year selected ", year);
+        console.log("Rate at year : ", multiplier);
+        setMultipliedRate(multiplier);
+      }
+    }
   }, [rates, year]);
 
   const handleClose = () => {

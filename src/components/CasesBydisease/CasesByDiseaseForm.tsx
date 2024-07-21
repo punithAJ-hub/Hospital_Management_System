@@ -147,7 +147,7 @@ export default function CasesByDiseaseForm(params) {
       <Grid container>
         <Grid item xs={8}>
           {" "}
-          <Box component={"div"} style={{ paddingTop: 50 }}>
+          <Box component={"div"} style={{ paddingTop: 50, paddingLeft: 10 }}>
             <LineChart
               xAxis={[
                 {
@@ -165,7 +165,7 @@ export default function CasesByDiseaseForm(params) {
                 },
               ]}
               height={300}
-              margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+              margin={{ left: 60, right: 30, top: 30, bottom: 30 }}
             />
           </Box>
         </Grid>

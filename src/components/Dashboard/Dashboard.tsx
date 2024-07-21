@@ -35,7 +35,7 @@ export default function Dashboard() {
             style={{ textAlign: "center", color: "#673ab7" }}
             className="welcomeText"
           >
-            Welcome {name}
+            Welcome {role === "doctor" ? "Dr." : ""} {name}
           </Typography>
           <Box pt={5}>
             {role != "admin" && (
